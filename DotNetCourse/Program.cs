@@ -1,4 +1,5 @@
 using DotNetCourse.CustomMiddlewares;
+using DotNetCourse.CustomMiddlwareConvention;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,7 @@ var app = builder.Build();
 //app.Run();
 app.Use(async (HttpContext context, RequestDelegate next) =>
 {
-    await context.Response.WriteAsync("First Middleware");
+    await context.Response.WriteAsync("First Middleware \n");
     await next(context);
 });
 //app.UseMiddleware<MyCustomMiddleware>();
@@ -37,6 +38,7 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 //    await next(context);
 //});
 app.UseMiddlewareExtension();
+app.UseMiddlewareCustomConvention();
 app.Run(async (HttpContext context) =>
 {
     await context.Response.WriteAsync("Third Middleware");

@@ -7,7 +7,7 @@ namespace DotNetCourse.CustomMiddlewares
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            await context.Response.WriteAsync("Second Middleware");
+            await context.Response.WriteAsync("Second Middleware \n");
             await next(context);
         }
         
