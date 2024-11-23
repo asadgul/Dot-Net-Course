@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.CompilerServices;
+
 namespace DotNetCourse.CustomMiddlewares
 {
     public class MyCustomMiddleware : IMiddleware
@@ -8,5 +10,16 @@ namespace DotNetCourse.CustomMiddlewares
             await context.Response.WriteAsync("Second Middleware");
             await next(context);
         }
+        
     }
+
+    public static class MiddlewareExtension
+    {
+        public static IApplicationBuilder UseMiddlewareExtension(this IApplicationBuilder applicationBuilder)
+        {
+            return applicationBuilder.UseMiddleware<MyCustomMiddleware>();
+        }
+    }
+
+    
 }

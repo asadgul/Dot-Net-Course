@@ -30,12 +30,13 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
     await context.Response.WriteAsync("First Middleware");
     await next(context);
 });
-app.UseMiddleware<MyCustomMiddleware>();
+//app.UseMiddleware<MyCustomMiddleware>();
 //app.Use(async (HttpContext context, RequestDelegate next) =>
 //{
 //    await context.Response.WriteAsync("Hello Second");
 //    await next(context);
 //});
+app.UseMiddlewareExtension();
 app.Run(async (HttpContext context) =>
 {
     await context.Response.WriteAsync("Third Middleware");
